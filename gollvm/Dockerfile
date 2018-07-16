@@ -6,6 +6,7 @@
 FROM ubuntu
 
 RUN apt update && \
+    apt dist-upgrade -y && \
     apt install --no-install-recommends -y git ninja-build cmake build-essential gcc autoconf && \
     rm -rf /var/lib/apt/lists/*
 
