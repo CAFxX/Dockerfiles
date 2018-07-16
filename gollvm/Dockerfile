@@ -10,9 +10,10 @@
 
 FROM ubuntu:xenial
 
-RUN apt update && \
-    apt dist-upgrade -y && \
-    apt install --no-install-recommends -y git ninja-build cmake build-essential gcc autoconf ca-certificates python && \
+RUN apt -qq update && \
+    apt -qq dist-upgrade -y && \
+    apt -qq install --no-install-recommends -y git ninja-build cmake build-essential gcc autoconf ca-certificates python && \
+    apt -qq list --installed && \
     rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /gollvm/src /gollvm/build /gollvm/install
