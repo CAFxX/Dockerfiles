@@ -10,7 +10,9 @@
 
 FROM ubuntu:xenial
 
-SHELL ["/bin/bash", "-c"] # cmake fails otherwise
+# use bash -- cmake fails otherwise
+SHELL ["/bin/bash", "-c"]
+ENV SHELL=/bin/bash
 
 RUN apt -qq -o=Dpkg::Use-Pty=0 update && \
     apt -qq -o=Dpkg::Use-Pty=0 dist-upgrade -y && \
