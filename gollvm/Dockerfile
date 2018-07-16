@@ -8,7 +8,7 @@
 # (the standard behavior of the gc go compiler) you need to build using the static flag:
 # `go build -gccgoflags="--static" [...]`
 
-FROM ubuntu
+FROM ubuntu:xenial
 
 # use bash -- cmake fails otherwise
 SHELL ["/bin/bash", "-c"]
