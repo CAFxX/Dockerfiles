@@ -11,7 +11,7 @@ RUN apt-get update && \
 
 RUN mkdir -p /gollvm/src /gollvm/build /gollvm/install
 
-RUN cd /gollvm/src && git clone http://llvm.org/git/llvm.git
+RUN cd /gollvm/src && git clone https://llvm.org/git/llvm.git
 RUN cd /gollvm/src/llvm/tools && git clone https://go.googlesource.com/gollvm
 RUN cd /gollvm/src/llvm/tools/gollvm && git clone https://go.googlesource.com/gofrontend
 RUN cd /gollvm/src/llvm/tools/gollvm/libgo && git clone https://github.com/libffi/libffi.git
