@@ -1,7 +1,12 @@
 # Dockerfile that builds a release of gollvm from the tip (master)
 # see https://go.googlesource.com/gollvm/+/master#setting-up-a-gollvm-work-area
-# note that intermediate steps are preserved, so the image is going to be on the big side
-# gollvm is installed in $GOLLVM_PATH and is added to the PATH, so you can simply run `go`
+# note that intermediate steps are preserved, so the image is going to be on the big side.
+#
+# gollvm is installed in $GOLLVM_PATH and is added to the PATH, so you can simply run `go`.
+#
+# By default gollvm builds dynamic executables; if you want to build static executables
+# (the standard behavior of the gc go compiler) you need to build using the static flag:
+# `go build -gccgoflags="--static" [...]`
 
 FROM ubuntu
 
