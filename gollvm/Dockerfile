@@ -5,8 +5,8 @@
 
 FROM ubuntu
 
-RUN apt-get update && \
-    apt-get install --no-install-recommends -y git ninja-build cmake build-essential gcc autoconf && \
+RUN apt update && \
+    apt install --no-install-recommends -y git ninja-build cmake build-essential gcc autoconf && \
     rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /gollvm/src /gollvm/build /gollvm/install
