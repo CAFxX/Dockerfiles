@@ -17,11 +17,11 @@ RUN apt update && \
 
 RUN mkdir -p /gollvm/src /gollvm/build /gollvm/install
 
-RUN cd /gollvm/src && git clone https://llvm.org/git/llvm.git
-RUN cd /gollvm/src/llvm/tools && git clone https://go.googlesource.com/gollvm
-RUN cd /gollvm/src/llvm/tools/gollvm && git clone https://go.googlesource.com/gofrontend
-RUN cd /gollvm/src/llvm/tools/gollvm/libgo && git clone https://github.com/libffi/libffi.git
-RUN cd /gollvm/src/llvm/tools/gollvm/libgo && git clone https://github.com/ianlancetaylor/libbacktrace.git
+RUN cd /gollvm/src                         && git clone --depth 1 https://llvm.org/git/llvm.git
+RUN cd /gollvm/src/llvm/tools              && git clone --depth 1 https://go.googlesource.com/gollvm
+RUN cd /gollvm/src/llvm/tools/gollvm       && git clone --depth 1 https://go.googlesource.com/gofrontend
+RUN cd /gollvm/src/llvm/tools/gollvm/libgo && git clone --depth 1 https://github.com/libffi/libffi.git
+RUN cd /gollvm/src/llvm/tools/gollvm/libgo && git clone --depth 1 https://github.com/ianlancetaylor/libbacktrace.git
 
 RUN cd /gollvm/build && \
     cmake -DCMAKE_INSTALL_PREFIX=/gollvm/install -DCMAKE_BUILD_TYPE=Release -DLLVM_USE_LINKER=gold -G Ninja /gollvm/src/llvm && \
