@@ -29,6 +29,7 @@ RUN cd /gollvm/src/llvm/tools/gollvm/libgo && git clone --depth 1 -q https://git
 
 RUN cd /gollvm/build && cmake -DCMAKE_INSTALL_PREFIX=/gollvm/install -DCMAKE_BUILD_TYPE=Release -DLLVM_USE_LINKER=gold -G Ninja /gollvm/src/llvm
 RUN cd /gollvm/build && ninja gollvm
+RUN cd /gollvm/build && ninja GoBackendCoreTests && tools/gollvm/unittests/BackendCore/GoBackendCoreTests
 RUN cd /gollvm/build && ninja install-gollvm
 
 ENV GOLLVM_PATH=/gollvm/install
