@@ -10,6 +10,8 @@
 
 FROM ubuntu:xenial
 
+SHELL ["/bin/bash", "-c"] # cmake fails otherwise
+
 RUN apt -qq -o=Dpkg::Use-Pty=0 update && \
     apt -qq -o=Dpkg::Use-Pty=0 dist-upgrade -y && \
     apt -qq -o=Dpkg::Use-Pty=0 install --no-install-recommends -y git ninja-build cmake build-essential gcc autoconf ca-certificates python && \
