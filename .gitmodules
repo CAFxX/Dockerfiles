@@ -1,0 +1,15 @@
+[submodule "gollvm/src/llvm"]
+	path = gollvm/src/llvm
+	url = https://llvm.org/git/llvm.git
+[submodule "gollvm/src/gollvm"]
+	path = gollvm/src/gollvm
+	url = https://go.googlesource.com/gollvm
+[submodule "gollvm/src/gofrontend"]
+	path = gollvm/src/gofrontend
+	url = https://go.googlesource.com/gofrontend
+[submodule "gollvm/src/libffi"]
+	path = gollvm/src/libffi
+	url = https://github.com/libffi/libffi.git
+[submodule "gollvm/src/libbacktrace"]
+	path = gollvm/src/libbacktrace
+	url = https://github.com/ianlancetaylor/libbacktrace.git

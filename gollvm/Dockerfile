@@ -15,17 +15,16 @@ SHELL ["/bin/bash", "-c"]
 ENV SHELL=/bin/bash
 
 RUN apt -qq -o=Dpkg::Use-Pty=0 update && \
-    apt -qq -o=Dpkg::Use-Pty=0 dist-upgrade -y && \
     apt -qq -o=Dpkg::Use-Pty=0 install --no-install-recommends -y git ninja-build cmake build-essential clang autoconf ca-certificates python && \
     apt -qq -o=Dpkg::Use-Pty=0 list --installed
 
 RUN mkdir -p /gollvm/src /gollvm/build /gollvm/install
 
-RUN cd /gollvm/src                         && git clone --depth 1 -q https://llvm.org/git/llvm.git
-RUN cd /gollvm/src/llvm/tools              && git clone --depth 1 -q https://go.googlesource.com/gollvm
-RUN cd /gollvm/src/llvm/tools/gollvm       && git clone --depth 1 -q https://go.googlesource.com/gofrontend
-RUN cd /gollvm/src/llvm/tools/gollvm/libgo && git clone --depth 1 -q https://github.com/libffi/libffi.git
-RUN cd /gollvm/src/llvm/tools/gollvm/libgo && git clone --depth 1 -q https://github.com/ianlancetaylor/libbacktrace.git
+COPY src/llvm         /gollvm/src/llvm
+COPY src/gollvm       /gollvm/src/llvm/tools/gollvm
+COPY src/gofrontend   /gollvm/src/llvm/tools/gollvm/gofrontend
+COPY src/libffi       /gollvm/src/llvm/tools/gollvm/libgo/libffi
+COPY src/libbacktrace /gollvm/src/llvm/tools/gollvm/libgo/libbacktrace
 
 RUN cd /gollvm/build && cmake -DCMAKE_INSTALL_PREFIX=/gollvm/install -DCMAKE_BUILD_TYPE=Release -DLLVM_USE_LINKER=gold -G Ninja /gollvm/src/llvm
 RUN cd /gollvm/build && ninja gollvm
