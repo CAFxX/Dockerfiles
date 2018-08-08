@@ -26,7 +26,7 @@ COPY src/gofrontend   /gollvm/src/llvm/tools/gollvm/gofrontend
 COPY src/libffi       /gollvm/src/llvm/tools/gollvm/libgo/libffi
 COPY src/libbacktrace /gollvm/src/llvm/tools/gollvm/libgo/libbacktrace
 
-RUN cd /gollvm/build && cmake -DCMAKE_INSTALL_PREFIX=/gollvm/install -DCMAKE_BUILD_TYPE=Release -DLLVM_USE_LINKER=gold -G Ninja /gollvm/src/llvm
+RUN cd /gollvm/build && cmake -DCMAKE_INSTALL_PREFIX=/gollvm/install -DCMAKE_BUILD_TYPE=Release -DLLVM_TARGETS_TO_BUILD="X86" -DLLVM_USE_LINKER=gold -G Ninja /gollvm/src/llvm
 RUN cd /gollvm/build && ninja gollvm
 RUN cd /gollvm/build && ninja GoBackendCoreTests && tools/gollvm/unittests/BackendCore/GoBackendCoreTests
 RUN cd /gollvm/build && ninja install-gollvm
